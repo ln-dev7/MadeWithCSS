@@ -1,24 +1,232 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-$blue: #24ADCD;
-$green: #4EBEA5;
-$gray: #ECEDEF;
-$indigo: #2D3E4E;
-$indigoLight: #37495D;
-$orange: #FED06E;
-$pink: #ED5180;
+$blue: #24adcd;
+$green: #4ebea5;
+$gray: #ecedef;
+$indigo: #2d3e4e;
+$indigoLight: #37495d;
+$orange: #fed06e;
+$pink: #ed5180;
 
-body, html{
-    height: 100%;
+body,
+html {
+  height: 100%;
 }
 
-body{
+body {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, $green, $blue);
+}
+
+.title {
+  position: absolute;
+  top: 50px;
+  color: #fff;
+  font-family: sans-serif;
+}
+
+.container {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  background: $gray;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bar {
+  position: absolute;
+  top: 30px;
+  right: 100px;
+  background: #b7b7b7;
+  width: 10px;
+  height: 230px;
+  transform-origin: top;
+  transform: rotate(20deg);
+  z-index: 3;
+  &::before {
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 50px;
+    background: #b7b7b7;
+    border-radius: 10px;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  &::after {
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 50px;
+    background: #b7b7b7;
+    border-radius: 10px;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}
+
+.dot {
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: $indigo;
+    border-radius: 50%;
+  }
+  span:nth-child(1) {
+    background: $orange;
+  }
+  span:nth-child(2) {
+    background: $pink;
+  }
+  span:nth-child(3) {
+    background: $indigoLight;
+  }
+}
+
+.disc {
+  position: relative;
+  background: $indigo;
+  border: 3px solid rgb(35, 44, 67);
+  width: 310px;
+  height: 310px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  animation: rotation 2s infinite linear;
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #37495d;
+    clip-path: polygon(50% 50%, 100% 12%, 100% 38%);
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #37495d;
+    clip-path: polygon(50% 50%, 0 92%, 0 61%);
+  }
+
+  &-line {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    border: 3px solid $indigo;
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right, $green, $blue);
+    &__1 {
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      border: 3px solid $indigo;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &__2 {
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      border: 3px solid $indigo;
+    }
+  }
+
+  &-circle {
+    background: $orange;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid rgb(35, 44, 67);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+    &__line {
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      border: 3px solid $pink;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .line_circle {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        height: 90%;
+        border-radius: 50%;
+        background: $pink;
+        overflow: hidden;
+        animation: rotation_two 2s infinite linear;
+
+        @keyframes rotation_two {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(359deg);
+          }
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: $orange;
+          clip-path: inset(0 0 50% 0);
+        }
+
+        .end {
+          width: 20px;
+          height: 20px;
+          background: $gray;
+          border: 2px solid $pink;
+          border-radius: 50%;
+          z-index: 2;
+        }
+      }
+    }
+  }
 }
