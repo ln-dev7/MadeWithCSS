@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+$blue: #24ADCD;
+$green: #4EBEA5;
+$gray: #ECEDEF;
+$indigo: #2D3E4E;
+$indigoLight: #37495D;
+$orange: #FED06E;
+$pink: #ED5180;
+
+body, html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, $green, $blue);
+}
